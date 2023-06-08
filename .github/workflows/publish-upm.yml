@@ -22,5 +22,5 @@ jobs:
       - name: Create UPM Branches
         uses: hecomi/create-upm-branch-action@main
         with:
-          git-tag: echo ${{steps.tag.outputs.tag}}
+          git-tag: ${{steps.tag.outputs.tag}}
           pkg-root-dir-path: Packages/AuthGate
