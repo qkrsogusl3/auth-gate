@@ -1,6 +1,6 @@
 {
     "name": "com.aaron.auth-gate",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Authentication Support",
     "displayName": "AuthGate",
     "unity": "2021.3",
