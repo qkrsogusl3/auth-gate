@@ -15,12 +15,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Tag name
+      - name: Get tag
         id: tag
-        run: echo "name=${GITHUB_REF#refs/tags/*.*.*}" >> $GITHUB_OUTPUT
+        uses: devops-actions/action-get-tag@v1.0.1
 
       - name: Create UPM Branches
         uses: hecomi/create-upm-branch-action@main
         with:
-          git-tag: ${{ steps.tag.outputs.name }}
+          git-tag: echo ${{steps.tag.outputs.tag}}
           pkg-root-dir-path: Packages/AuthGate
