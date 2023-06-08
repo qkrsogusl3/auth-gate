@@ -1,0 +1,27 @@
+{
+    "name": "AuthGate.Firebase.Apple",
+    "rootNamespace": "AuthGate.Firebase.Apple",
+    "references": [
+        "GUID:e2146bdc04d424169b039613a1b62bdf",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6df0ba4d71a14bf0951dd523a95d7d8b",
+        "GUID:8789f9aa884f847b999aed5e8c0e953a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "AUTH_GATE_FIREBASE_APPLE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.lupidan.apple-signin-unity",
+            "expression": "",
+            "define": "AUTH_GATE_FIREBASE_APPLE"
+        }
+    ],
+    "noEngineReferences": false
+}

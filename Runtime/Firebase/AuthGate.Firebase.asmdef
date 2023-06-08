@@ -1,0 +1,25 @@
+{
+    "name": "AuthGate.Firebase",
+    "rootNamespace": "AuthGate.Firebase",
+    "references": [
+        "GUID:8789f9aa884f847b999aed5e8c0e953a",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "AUTH_GATE_FIREBASE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.google.firebase.auth",
+            "expression": "",
+            "define": "AUTH_GATE_FIREBASE"
+        }
+    ],
+    "noEngineReferences": false
+}

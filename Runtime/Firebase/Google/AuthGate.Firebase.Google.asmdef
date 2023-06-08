@@ -1,0 +1,27 @@
+{
+    "name": "AuthGate.Firebase.Google",
+    "rootNamespace": "AuthGate.Firebase.Google",
+    "references": [
+        "GUID:eec51df2b2db1417798e518cdf5bd4d8",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:6df0ba4d71a14bf0951dd523a95d7d8b",
+        "GUID:8789f9aa884f847b999aed5e8c0e953a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "AUTH_GATE_FIREBASE_GOOGLE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.google.google-signin-unity",
+            "expression": "",
+            "define": "AUTH_GATE_FIREBASE_GOOGLE"
+        }
+    ],
+    "noEngineReferences": false
+}
