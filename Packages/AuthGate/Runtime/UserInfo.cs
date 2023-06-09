@@ -17,5 +17,10 @@ namespace AuthGate
         {
             return !string.IsNullOrWhiteSpace(UserId);
         }
+
+        public override string ToString()
+        {
+            return $"{UserId}, {Email}";
+        }
     }
 }

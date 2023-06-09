@@ -1,0 +1,20 @@
+{
+    "name": "AuthGate.Samples.Firebase",
+    "rootNamespace": "AuthGate.Samples.Firebase",
+    "references": [
+        "GUID:8789f9aa884f847b999aed5e8c0e953a",
+        "GUID:6df0ba4d71a14bf0951dd523a95d7d8b",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:28a6fa81311741b7966b32b15fabf25e",
+        "GUID:328b8fae1fd64629ace1a02763b8a78c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

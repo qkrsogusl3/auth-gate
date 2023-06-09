@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:engine="UnityEngine.UIElements"
+        xmlns:editor="UnityEditor.UIElements"
+        xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:Style src="./LoginController.uss"/>
+    <engine:VisualElement name="root">
+        <engine:VisualElement class="status">
+            <engine:TextField
+                    name="uid-field" class="status__text-field"
+                    label="uid" readonly="true" text="user id"
+            />
+            <engine:TextField
+                    name="email-field" class="status__text-field"
+                    label="email" readonly="true" text="test@mail.com"
+            />
+        </engine:VisualElement>
+        <engine:VisualElement class="login">
+            <engine:Button name="login-button" text="Login"/>
+            <engine:Button name="logout-button" text="Logout" class="hide"/>
+            <engine:Button name="delete-button" text="delete"/>
+        </engine:VisualElement>
+        <engine:VisualElement class="sign-in">
+            <engine:Button text="google" name="google-button" class="sign-in__button"/>
+            <engine:Button text="apple" name="apple-button" class="sign-in__button"/>
+            <engine:Button text="guest" name="guest-button" class="sign-in__button"/>
+        </engine:VisualElement>
+        <engine:TextElement name="log-text" class="debug"/>
+    </engine:VisualElement>
+    <engine:VisualElement name="loading">
+        <engine:Label text="Loading..."/>
+    </engine:VisualElement>
+</engine:UXML>

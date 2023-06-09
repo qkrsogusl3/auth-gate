@@ -6,7 +6,7 @@ using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace AuthGate.Editor
+namespace AuthGate
 {
     [Serializable]
     public class VirtualUser
