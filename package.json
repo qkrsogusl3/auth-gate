@@ -8,9 +8,6 @@
         "auth",
         "firebase"
     ],
-    "dependencies": {
-        "com.cysharp.unitask": "2.3.3"
-    },
     "samples": [
         {
             "displayName": "Firebase Sample",
