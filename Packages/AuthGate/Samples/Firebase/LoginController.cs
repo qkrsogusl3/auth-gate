@@ -1,6 +1,6 @@
+#if UNITY_2021_1_OR_NEWER
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using AuthGate.Firebase.Apple;
 using AuthGate.Firebase.Google;
 using Cysharp.Threading.Tasks;
@@ -344,3 +344,4 @@ namespace AuthGate.Samples.Firebase
         }
     }
 }
+#endif

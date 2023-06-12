@@ -249,6 +249,7 @@ namespace AuthGate.Firebase
             try
             {
                 await _auth.CurrentUser.DeleteAsync();
+                _auth.SignOut();
             }
             catch (Exception)
             {

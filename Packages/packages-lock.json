@@ -40,7 +40,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "d40a4e150ca554bf8a3127c69ef8a6b71e9ddd6b"
+      "hash": "ffe213bd7a5239a13e23cb1ffaad08ad1eb0dbd9"
     },
     "com.lupidan.apple-signin-unity": {
       "version": "https://github.com/lupidan/apple-signin-unity.git#v1.4.2",

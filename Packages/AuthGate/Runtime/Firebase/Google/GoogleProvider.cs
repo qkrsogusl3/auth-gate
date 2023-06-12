@@ -57,6 +57,10 @@ namespace AuthGate.Firebase.Google
             {
                 signIn = await Google.SignIn();
             }
+            // catch (DllNotFoundException) //missing google sign in support 1.0.4 native-googlesignin
+            // {
+            //     
+            // }
             catch (Exception e)
             {
                 throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, Id, e);
