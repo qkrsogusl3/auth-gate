@@ -5,7 +5,7 @@ namespace AuthGate.Firebase
 {
     public interface IFirebaseProvider : ICredentialProvider
     {
-        UniTask<bool> Validate(IUserInfo userInfo);
-        UniTask<Credential> SignIn();
+        UniTask<bool> ValidateAsync(IUserInfo userInfo);
+        UniTask<Credential> SignInAsync();
     }
 }

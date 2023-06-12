@@ -62,13 +62,13 @@ namespace AuthGate.Firebase.Apple
             return source.Task;
         }
 
-        public async UniTask<bool> Validate(IUserInfo userInfo)
+        public async UniTask<bool> ValidateAsync(IUserInfo userInfo)
         {
             var state = await GetCredentialStateAsync(userInfo.UserId);
             return state == CredentialState.Authorized;
         }
 
-        public async UniTask<Credential> SignIn()
+        public async UniTask<Credential> SignInAsync()
         {
             var rawNonce = GenerateRandomString(32);
             var nonce = GenerateSHA256NonceFromRawNonce(rawNonce);
@@ -85,9 +85,9 @@ namespace AuthGate.Firebase.Apple
                 switch (e.Code)
                 {
                     case AuthorizationErrorCode.Canceled:
-                        throw new SignInFailedException(SignInFailReason.PlatformCredentialCanceled, Id);
+                        throw new SignInFailedException(SignInFailReason.PlatformCredentialCanceled, Id, e);
                     default:
-                        throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, Id);
+                        throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, Id, e);
                 }
             }
 

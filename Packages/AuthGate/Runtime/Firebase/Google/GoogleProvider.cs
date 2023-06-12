@@ -44,29 +44,22 @@ namespace AuthGate.Firebase.Google
             };
         }
 
-        public async UniTask<bool> Validate(IUserInfo userInfo)
+        public async UniTask<bool> ValidateAsync(IUserInfo userInfo)
         {
-            try
-            {
-                var user = await Google.SignInSilently();
-                return user != null;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var user = await Google.SignInSilently();
+            return user != null;
         }
 
-        public async UniTask<Credential> SignIn()
+        public async UniTask<Credential> SignInAsync()
         {
             GoogleSignInUser signIn;
             try
             {
                 signIn = await Google.SignIn();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, Id);
+                throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, Id, e);
             }
 
             return GoogleAuthProvider.GetCredential(signIn.IdToken, null);
