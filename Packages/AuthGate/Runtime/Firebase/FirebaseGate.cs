@@ -97,7 +97,7 @@ namespace AuthGate.Firebase
                 throw new InvalidCredentialException(InvalidCredentialReason.NotSupportedProvider);
             }
 
-            var isValid = await provider.Validate(signedUser);
+            var isValid = await provider.ValidateAsync(signedUser);
             if (!isValid)
             {
                 _auth.SignOut();
@@ -114,7 +114,7 @@ namespace AuthGate.Firebase
             {
                 if (!_config.Providers.TryGetValue(providerUser.ProviderId, out var provider)) continue;
 
-                var isValid = await provider.Validate(providerUser);
+                var isValid = await provider.ValidateAsync(providerUser);
                 if (isValid) continue;
 
                 try
@@ -146,15 +146,15 @@ namespace AuthGate.Firebase
                 throw new SignInFailedException(SignInFailReason.NotSupportProvider, providerId);
             }
 
-            var credential = await provider.SignIn();
+            var credential = await provider.SignInAsync();
             FirebaseUser user;
             try
             {
                 user = await _auth.SignInWithCredentialAsync(credential);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, providerId);
+                throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, providerId, e);
             }
 
             Debug.Log($"sign in with {credential.Provider} and anonymous: {user.IsAnonymous}");
@@ -198,7 +198,7 @@ namespace AuthGate.Firebase
                 throw new SignInFailedException(SignInFailReason.NotSupportProvider, providerId);
             }
 
-            var credential = await provider.SignIn();
+            var credential = await provider.SignInAsync();
 
             Debug.Log($"link get credential: {credential.IsValid()} {credential.Provider}");
 
