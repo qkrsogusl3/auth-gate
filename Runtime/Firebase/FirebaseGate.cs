@@ -26,6 +26,8 @@ namespace AuthGate.Firebase
                 {
                     PlayerPrefs.SetString(KeyLatestProviderId, value);
                 }
+
+                PlayerPrefs.Save();
             }
         }
 
@@ -64,25 +66,29 @@ namespace AuthGate.Firebase
 
             var result = await _auth.SignInAnonymouslyAsync();
 
-            Debug.Log($"anonymous: {result.Credential.Provider}");
             foreach (var userInfo in result.User.ProviderData)
             {
                 Debug.Log(userInfo.ProviderId);
             }
-
-            Debug.Log($"is anonymous: {result.User.IsAnonymous}");
 
             return result.User.ToUserInfo();
         }
 
         private async UniTask<UserInfo> ValidateLatestProvider(FirebaseUser user)
         {
-            var providerUsers = user.ProviderData.Select(_ => new SafeUserInfo(_)).ToArray();
+            var providerUsers = user.ProviderData
+                .Select(_ => new SafeUserInfo(_))
+                .Where(_ => _.ProviderId != "firebase")
+                .ToArray();
 
             IUserInfo signedUser = null;
             if (providerUsers.Any())
             {
                 var latestProviderId = LatestProviderId;
+                // if (string.IsNullOrWhiteSpace(latestProviderId)) // has user, not saved latest provider
+                // {
+                //     return user.ToUserInfo();
+                // }
                 signedUser = providerUsers.FirstOrDefault(_ => _.ProviderId == latestProviderId) ??
                              providerUsers.FirstOrDefault();
             }
@@ -157,7 +163,6 @@ namespace AuthGate.Firebase
                 throw new SignInFailedException(SignInFailReason.PlatformCredentialFailed, providerId, e);
             }
 
-            Debug.Log($"sign in with {credential.Provider} and anonymous: {user.IsAnonymous}");
             LatestProviderId = providerId;
             return user.ToUserInfo();
         }
@@ -179,8 +184,6 @@ namespace AuthGate.Firebase
                 LatestProviderId = null;
             }
 
-            Debug.Log($"sign out {providerId}: {result.User.IsAnonymous}");
-
             return true;
         }
 
@@ -200,39 +203,28 @@ namespace AuthGate.Firebase
 
             var credential = await provider.SignInAsync();
 
-            Debug.Log($"link get credential: {credential.IsValid()} {credential.Provider}");
-
             AuthResult result = null;
             try
             {
                 result = await _auth.CurrentUser.LinkWithCredentialAsync(credential);
-                Debug.Log($"link success: {result.User.ProviderData.Count()}");
             }
             // FirebaseAccountLinkException: 기존 Firebase 계정이 이미 Apple 계정에 연결되었다는 오류
             // https://firebase.google.com/docs/auth/unity/apple?hl=ko#on-apple-platforms
             catch (Exception e)
             {
-                Debug.Log($"link failed: {e}");
                 throw new LinkFailedException(providerId, e);
             }
 
-            foreach (var userInfo in result.User.ProviderData)
-            {
-                Debug.Log($"linked: {userInfo.ProviderId}");
-            }
-
-            // 링크된 공급자가 없을 경우 signout시 missing되어 버리면서 기존 연동했던 이메일이 남아있는 상태가 되어버려 
-            // 사용할 수 없게 된다
+            // 링크된 공급자가 없을 경우 signout시 missing되어 버리고 기존 연동했던 이메일이 남아있는 상태가 되어버려 
+            // 기존유저를 사용할 수 없게 된다
 
             var linkedProviderId = result.AdditionalUserInfo.ProviderId;
-            Debug.Log($"linked user: {result.User.IsAnonymous}");
             return linkedProviderId;
         }
 
         public async UniTask UnlinkAsync(string providerId)
         {
             var authResult = await _auth.CurrentUser.UnlinkAsync(providerId);
-            Debug.Log($"unlink success: {authResult.Credential.Provider}, {authResult.User.ProviderData.Count()}");
         }
 
         public UniTask SignOutAsync()
