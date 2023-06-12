@@ -27,5 +27,12 @@ namespace AuthGate
             Reason = reason;
             ProviderId = providerId;
         }
+
+        public SignInFailedException(SignInFailReason reason, string providerId, Exception e)
+            : base($"{providerId} signin process failed: {reason.ToString()}", e)
+        {
+            Reason = reason;
+            ProviderId = providerId;
+        }
     }
 }
